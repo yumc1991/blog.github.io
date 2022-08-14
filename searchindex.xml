@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>性能调优</title><url>https://yumc1991.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</url><categories><category>JAVA</category></categories><tags><tag>性能调优</tag></tags><content type="html"> 背景 最近的工作中接触到了大量性能调优方面的事务，这些都是之前工作中从未接触过的，这里简单总结一下。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>性能调优</title><url>https://yumc1991.github.io/blog.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</url><categories><category>JAVA</category></categories><tags><tag>性能调优</tag></tags><content type="html"> 背景 最近的工作中接触到了大量性能调优方面的事务，这些都是之前工作中从未接触过的，这里简单总结一下。
 方法论 总体而言，性能调优分为两部分，分别是客户端性能调优和服务端性能调优（针对CS架构），如果是管理平台等BS架构类型的系统，客户端就是浏览器，就是前端调优，而后端可以做的事情相当的少，就是服务端的调优。
 调优手段 就目前的知识储备而言，我所了解的调优基本上如同程咬金的3板斧一般。
 劈脑袋之控制流量 鬼剔牙之线程池与连接池适配 掏耳朵之指标观测与参数调优 ok，下面分别针对上述3种方法进行详述。 控制流量 当我们驾驶汽车行驶在马路上时，经常会遇到红绿灯。除了规范交通，红绿灯更为主要的作用是进行限流，控制路上行驶的车流量，避免拥塞。在计算机的世界里，也是处处存在着拥塞控制，最经典的当属TCP里的滑动窗口设计。
@@ -19,7 +19,7 @@ MAX_CONNECTION_TOTAL：连接池最大连接数，用于控制整个服务端集
 另外，测试过程中自己编写了shell脚本，记录了全过程的CPU及内存变化，对于后续的指标实时监测，也是非常有帮助的。
 案例2 场景概述 项目完成服务端数据进行查询，但是测试过程中发现，同时并发请求客户端时（使用jmeter或水平扩展分别请求），会直接导致连接池超时，将超时时间调长后同样会有该问题，且超时时间并未到达设置的时间。
 分析问题后发现，在服务端需要完成多节点的数据merge操作，而超时会出现在merge中。
-优化点 将线程池数量和连接池数量调小，因为当客户端水平扩展后，服务端集群单个节点无法再承载这么大的流量，直接导致无连接可用，返回超时。</content></entry><entry><title>读书笔记-半小时漫画经济学</title><url>https://yumc1991.github.io/post/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8D%8A%E5%B0%8F%E6%97%B6%E6%BC%AB%E7%94%BB%E7%BB%8F%E6%B5%8E%E5%AD%A6/</url><categories><category>读书笔记</category></categories><tags><tag>经济学</tag></tags><content type="html"> 引子：经济这个词是怎么来的呢？
+优化点 将线程池数量和连接池数量调小，因为当客户端水平扩展后，服务端集群单个节点无法再承载这么大的流量，直接导致无连接可用，返回超时。</content></entry><entry><title>读书笔记-半小时漫画经济学</title><url>https://yumc1991.github.io/blog.github.io/post/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8D%8A%E5%B0%8F%E6%97%B6%E6%BC%AB%E7%94%BB%E7%BB%8F%E6%B5%8E%E5%AD%A6/</url><categories><category>读书笔记</category></categories><tags><tag>经济学</tag></tags><content type="html"> 引子：经济这个词是怎么来的呢？
 经济这个词的英文是economy，这个词来源于古希腊。在中国，经济最早出现于东晋，是经世济民的简称。到了近代，由日本翻译过来后引入了中国。
 近代大家严复曾经将economy翻译为"生计"，后来兜兜转转，&ldquo;经济"这个翻译最终占据了主流。
 简介 这是《半小时漫画经济学》的第一本，书籍的整体脉络是：
@@ -60,7 +60,7 @@ MAX_CONNECTION_TOTAL：连接池最大连接数，用于控制整个服务端集
 前者，消费者会很自然的将50元的帽子和1元换购费进行比例换算，而后者，则会让人将50元的帽子和500元的围巾进行对比。孰优孰略，一看便知。
 价格锚点： 商家摆出，高、中、低，三种价位的商品，这个时候人们往往会去购买中档的商品。这就是让高、低两挡商品作为锚点进行对比。
 收获及总结 更加详细的了解了五险一金，同时也学习了一些消费心理学。
-总体而言，本书如其名，半小时可以快速读完，价值也基本在半小时的成本内。</content></entry><entry><title>读书笔记 半小时漫画经济学2</title><url>https://yumc1991.github.io/post/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8D%8A%E5%B0%8F%E6%97%B6%E6%BC%AB%E7%94%BB%E7%BB%8F%E6%B5%8E%E5%AD%A62/</url><categories><category>读书笔记</category></categories><tags><tag>经济学</tag></tags><content type="html"> 简介 这是《半小时漫画经济学》的第二本，这本书中着重就经济危机的产生、历史上有名的经济危机的发生及解决进行了介绍。
+总体而言，本书如其名，半小时可以快速读完，价值也基本在半小时的成本内。</content></entry><entry><title>读书笔记 半小时漫画经济学2</title><url>https://yumc1991.github.io/blog.github.io/post/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8D%8A%E5%B0%8F%E6%97%B6%E6%BC%AB%E7%94%BB%E7%BB%8F%E6%B5%8E%E5%AD%A62/</url><categories><category>读书笔记</category></categories><tags><tag>经济学</tag></tags><content type="html"> 简介 这是《半小时漫画经济学》的第二本，这本书中着重就经济危机的产生、历史上有名的经济危机的发生及解决进行了介绍。
 读完整本书，了解了一些经济学中的基本概念，同时更多的是对经济学的历史有了认识。
 以史为鉴，可以知兴衰。
 了解经济危机 3种融资方式 融资，依据其还款方式不同，可以分为3种：
@@ -97,4 +97,4 @@ MAX_CONNECTION_TOTAL：连接池最大连接数，用于控制整个服务端集
 由于金本位的存在，黄金的外流直接导致美元贬值。
 但可能冥冥之中自由天意，在最艰难的时刻，旧金山发现了金矿，于是乎，局势反转！
 第二次世界大战 第二次世界大战前，美国经历了经济大萧条，在此期间，美国也迎来了2位总统，胡佛 &amp;&amp; 罗斯福。
-而随着第二次世界大战的发生，美国一方面作为出口国，不断的向欧洲诸国出口装备，赚的盆满钵满。另一方面，随着最后的参战成为战胜方，美国也收获了政治上的权利，最终走向巅峰，至今。～</content></entry><entry><title>关于我</title><url>https://yumc1991.github.io/about.html</url><categories/><tags/><content type="html"> 个人爱好 喜欢各类体育运动 喜欢读书，唐宋文学、人物传记、经济学 博客精神 好的想法值得分享和传播 近期内容预告 Flink精读 MVP版本流处理平台</content></entry></search>
+而随着第二次世界大战的发生，美国一方面作为出口国，不断的向欧洲诸国出口装备，赚的盆满钵满。另一方面，随着最后的参战成为战胜方，美国也收获了政治上的权利，最终走向巅峰，至今。～</content></entry><entry><title>关于我</title><url>https://yumc1991.github.io/blog.github.io/about.html</url><categories/><tags/><content type="html"> 个人爱好 喜欢各类体育运动 喜欢读书，唐宋文学、人物传记、经济学 博客精神 好的想法值得分享和传播 近期内容预告 Flink精读 个人阅读</content></entry></search>

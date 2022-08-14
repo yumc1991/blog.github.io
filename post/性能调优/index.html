@@ -1,0 +1,389 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=content-security-policy content="upgrade-insecure-requests">
+<title> 性能调优 - Schrodinger的博客 </title>
+<meta name=keywords content="博客,程序员,架构师,思考,读书,笔记,技术,分享,JAVA,Golang">
+<meta name=author content="Schrodinger">
+<meta property="og:title" content="性能调优">
+<meta property="og:site_name" content="Schrodinger的博客">
+<meta property="og:image" content="https://yumc1991.github.io/img/author.jpg">
+<meta name=title content="性能调优 - Schrodinger的博客">
+<meta name=description content="性能调优的一点经验">
+<link rel="shortcut icon" href=https://yumc1991.github.io/img/favicon.ico>
+<link rel=apple-touch-icon href=https://yumc1991.github.io/img/apple-touch-icon.png>
+<link rel=apple-touch-icon-precomposed href=https://yumc1991.github.io/img/apple-touch-icon.png>
+<link href=//unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css rel=stylesheet type=text/css>
+<link href=//unpkg.com/imageviewer@1.1.0/dist/viewer.min.css rel=stylesheet>
+<link href=https://yumc1991.github.io/css/main.css rel=stylesheet type=text/css>
+<link href=https://yumc1991.github.io/css/syntax.css rel=stylesheet type=text/css>
+</head>
+<body itemscope itemtype=http://schema.org/WebPage lang=zh-hans>
+<div class="container one-collumn sidebar-position-left page-home">
+<div class=headband></div>
+<header id=header class=header itemscope itemtype=http://schema.org/WPHeader>
+<div class=header-inner> <div class=site-brand-container>
+<div class=site-nav-toggle>
+<div class=toggle role=button style=opacity:1;top:0>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span>
+</div>
+</div>
+<div class=site-meta>
+<div class=custom-logo-site-title>
+<a href=/ class=brand rel=start>
+<span class=logo-line-before><i></i></span>
+<span class=site-title>Schrodinger的博客</span>
+<span class=logo-line-after><i></i></span>
+</a>
+</div>
+<p class=site-subtitle>我们都是颜色不一样的海。</p>
+</div>
+<div class=site-nav-right>
+<div class="toggle popup-trigger" style=opacity:1;top:0>
+<i class="fa fa-search fa-fw fa-lg"></i>
+</div>
+</div>
+</div>
+<nav class=site-nav>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a href=/ rel=section>
+<i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页
+</a>
+</li>
+<li class="menu-item menu-item-active">
+<a href=/post rel=section>
+<i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档
+</a>
+</li>
+<li class=menu-item>
+<a href=/about.html rel=section>
+<i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于我
+</a>
+</li>
+<li class=menu-item>
+<a href=/404.html rel=section>
+<i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益404
+</a>
+</li>
+<li class="menu-item menu-item-search">
+<a href=javascript:; class=popup-trigger> <i class="menu-item-icon fa fa-search fa-fw"></i> <br> 搜索</a>
+</li>
+</ul>
+<div class=site-search>
+<div class="popup search-popup local-search-popup">
+<div class="local-search-header clearfix">
+<span class=search-icon><i class="fa fa-search"></i> </span>
+<span class=popup-btn-close><i class="fa fa-times-circle"></i></span>
+<div class=local-search-input-wrapper>
+<input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off>
+</div>
+</div>
+<div id=local-search-result></div>
+</div>
+</div>
+</nav> </div>
+</header>
+<main id=main class=main>
+<div class=main-inner>
+<div class=content-wrap>
+<div id=content class=content>
+<section id=posts class=posts-expand>
+<article class="post post-type-normal" itemscope itemtype=http://schema.org/Article>
+<header class=post-header>
+<h1 class=post-title itemprop="name headline">
+<a class=post-title-link href=https://yumc1991.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/ itemprop=url>
+性能调优
+</a>
+</h1>
+<div class=post-meta>
+<span class=post-pushdate>
+<i class="fa fa-calendar-o fa-fw"></i>
+<span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2022-08-14">
+2022-08-14
+</time>
+</span>
+<span class=post-category>
+<i class="fa fa-folder-o fa-fw"></i>
+<span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing>
+<a class=post-category-a href=/categories/java itemprop=url rel=index>
+<span itemprop=name>JAVA</span>
+</a>
+&nbsp;
+</span>
+</span>
+<span class=post-wordcount>
+<i class="fa fa-file-word-o fa-fw"></i>
+<span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>2572 字</span>
+</span>
+<span class=post-readtime>
+<i class="fa fa-eye fa-fw"></i>
+<span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>6分钟</span>
+</span>
+<span id=/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/ class="leancloud_visitors post-visitor" data-flag-title=性能调优>
+<i class="fa fa-binoculars fa-fw"></i>
+<span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span>
+</span>
+</div>
+</header>
+<div class=post-body itemprop=articleBody>
+<h1 id=背景>背景</h1>
+<p>最近的工作中接触到了大量性能调优方面的事务，这些都是之前工作中从未接触过的，这里简单总结一下。</p>
+<h1 id=方法论>方法论</h1>
+<p>总体而言，性能调优分为两部分，分别是客户端性能调优和服务端性能调优（针对CS架构），如果是管理平台等BS架构类型的系统，客户端就是浏览器，就是前端调优，而后端可以做的事情相当的少，就是服务端的调优。</p>
+<h2 id=调优手段>调优手段</h2>
+<p>就目前的知识储备而言，我所了解的调优基本上如同程咬金的3板斧一般。</p>
+<ol>
+<li>劈脑袋之控制流量</li>
+<li>鬼剔牙之线程池与连接池适配</li>
+<li>掏耳朵之指标观测与参数调优
+ok，下面分别针对上述3种方法进行详述。</li>
+</ol>
+<h3 id=控制流量>控制流量</h3>
+<p>当我们驾驶汽车行驶在马路上时，经常会遇到红绿灯。除了规范交通，红绿灯更为主要的作用是进行限流，控制路上行驶的车流量，避免拥塞。在计算机的世界里，也是处处存在着拥塞控制，最经典的当属TCP里的滑动窗口设计。</p>
+<p>那么，同理，如果将服务端的处理能力看成道路，将客户端发送过来的请求看成汽车，很明显，也需要比较好的流量控制。
+流量控制的手段有很多，这里按类型划分为两类，客户端限量和服务端限流。</p>
+<p>客户端限流就是控制客户端流入的流量，通过限制流入来限制流出。最常见的方式是漏桶算法和令牌桶算法，如果考虑分布式场景，可能还需要引入中间件或者自己实现一套分布式限流。当然，这里还有更简单的方式，直接在客户端的方法入口增加信号量限流，这样就可以实现客户端的水平扩展。</p>
+<p>服务端限流并不是常规意义上在服务端代码中实现限流，而是和客户端限流类似，限制流入的流量。在客户端使用服务端连接池进行数据发送时，将大数据拆分成小数据进行发送。比如将原本10000条的全量数据拆分成40个250条的数据，这样做可以显著提升TPS。</p>
+<h3 id=线程池与连接池适配>线程池与连接池适配</h3>
+<p>在多核的世界里，多线程与线程池是提升性能的必备手段，通过引入多个线程并行处理，大大加快了处理速度。但是，线程数的设置也是很有讲究的。一般而言，会使用下面这个公式来计算：</p>
+<ul>
+<li>假设服务器的逻辑CPU数是N</li>
+<li>如果是IO密集型应用，那么线程数（核心线程数）会设置为2N</li>
+<li>如果是CPU密集型应用，那么线程数（核心线程数）会设置为N+1</li>
+</ul>
+<p>上述结论的具体推导可以百度一下，这里不再赘述。太大或太小的线程数都是不可取的，太小时无法充分利用多核的性能，而太大时会导致CPU大量开销在线程切换上，同样降低处理性能。</p>
+<p>接下来，考虑CS架构中最为核心的一个组件，客户端连接池。一般来说，客户端连接池的底层是一个HTTP连接池，而在HTTP连接池中，下面的几个指标设置常常会直接影响服务性能</p>
+<ul>
+<li>MAX_CONNECTION_TOTAL：连接池最大连接数，用于控制整个服务端集群可以提供的连接数量，当超过这个数量时，连接就会被拒绝。</li>
+<li>ROUTE_MAX_COUNT：路由到某台主机的最大连接数。如果Max设置为800，集群中的主机数量为8，那么Route就可以设置为100，实现均分控制。当然具体的参数设置值与连接的负载均衡算法息息相关。</li>
+<li>CONNECTION_REQUEST_TIME_OUT：从连接池中获取连接的超时时间，这个值需要根据服务端处理请求的具体时长进行调整。如果处理时长比较长，那么建议设置的大一些，避免连接获取失败。</li>
+<li>CONNECTION_TIME_OUT：客户端和服务器建立连接的超时时间。正常的网络条件下，这个值一般而言都比较小，设置为3-5s即可。</li>
+<li>READ_TIME_OUT：客户端从服务器读取数据的超时时间。这个值比较重要，是处理时长，根据服务情况设置。建议在测试时，从默认设置（一般是6s），逐步提升，得到最终的响应时间。不可设置过大或过小，过小则超时未获取到数据，过大则导致会一直当服务端异常时，连接无法释放。</li>
+<li>CONNECTION_IDLE_TIME_OUT：连接空闲超时时间。</li>
+<li>更加详细的连接池配置，参考连接池配置详解。</li>
+</ul>
+<p>那么所谓线程池与连接池适配是什么意思呢？举个例子来说，如果线程池的核心线程数配置为256，那么同时最高会有256个线程去执行。此时，如果连接池数量配置为128，那么就意味着会有剩余128个线程处于无法获取到连接的状态，出现不断的切换。因此，建议在线程池与连接池的配置中，线程池数量小于等于连接池数量。</p>
+<h3 id=指标观测与参数调优>指标观测与参数调优</h3>
+<p>参数调优其实是一个相当枯燥的过程，需要不断的进行测试、修改参数这样的循环，最终找到一个临界点。在调优的过程中，针对指标的观测是验证参数调优好坏的关键。</p>
+<p>指标观测，一般需要关注：CPU、IO、内存和网络，使用的工具包括：sar、iostat、nmon等等。如果测试过程中发现CPU负载始终维持在30% ～ 40%，那么就需要去检查程序中是不是限流控制的不对。如果观察到网络出现瓶颈，比如发送或者接收的包很大，达到网络带宽，那么就需要去调整发送的数据结构，或者调整发送的数据量。</p>
+<h1 id=实战>实战</h1>
+<p>在实战环节中，讲2个最近做的案例，其中，案例1实现了TPS从200w到700w的飞跃，案例2实现了CPU负载从20%到80%的跳跃。</p>
+<h2 id=案例1>案例1</h2>
+<h3 id=场景概述>场景概述</h3>
+<p>项目实现数据生产并将数据推送至服务端，该过程中会打印数据推送的TPS。</p>
+<p>在项目的初次测试中，发现整体的TPS维持在100w到200w左右（当然，这里需要比较强劲的服务器，我们使用的服务器是物理机，256个逻辑CPU，内存512G），无论怎么修改线程数或者对过程进行优化，整体TPS都没有比较大的提升。</p>
+<h3 id=优化点>优化点</h3>
+<p>这里的优化点就是大拆小，将数据拆分为400个一组的数据进行发送。最终实现了200w到700w的提升。</p>
+<h3 id=指标观测>指标观测</h3>
+<p>测试过程中，重点关注了CPU和内存的变化，因为数据推送时并没有持久化到磁盘上。如果有落盘环节，那么IO也是需要重点关注的指标，使用sar -d可以很方便的观测。</p>
+<p>另外，测试过程中自己编写了shell脚本，记录了全过程的CPU及内存变化，对于后续的指标实时监测，也是非常有帮助的。</p>
+<h2 id=案例2>案例2</h2>
+<h3 id=场景概述-1>场景概述</h3>
+<p>项目完成服务端数据进行查询，但是测试过程中发现，同时并发请求客户端时（使用jmeter或水平扩展分别请求），会直接导致连接池超时，将超时时间调长后同样会有该问题，且超时时间并未到达设置的时间。</p>
+<p>分析问题后发现，在服务端需要完成多节点的数据merge操作，而超时会出现在merge中。</p>
+<h3 id=优化点-1>优化点</h3>
+<p>将线程池数量和连接池数量调小，因为当客户端水平扩展后，服务端集群单个节点无法再承载这么大的流量，直接导致无连接可用，返回超时。</p>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98 rel=tag title=性能调优>#性能调优#</a>
+</div>
+<div class=addthis_inline_share_toolbox></div>
+<div class=post-nav>
+<div class=article-copyright>
+<div class=article-copyright-info>
+<p>
+<span>标题：</span>性能调优
+</p>
+<p>
+<span>链接：</span>https://yumc1991.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/
+</p>
+<p>
+<span>作者：</span>Schrodinger
+</p>
+<p>
+<span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/3.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！
+</p>
+</div>
+</div>
+<div class=clear></div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=https://yumc1991.github.io/post/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%8D%8A%E5%B0%8F%E6%97%B6%E6%BC%AB%E7%94%BB%E7%BB%8F%E6%B5%8E%E5%AD%A6/ rel=prev title=读书笔记-半小时漫画经济学>
+读书笔记-半小时漫画经济学
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+<div id=wcomments></div>
+</footer>
+</article>
+</section>
+</div>
+</div>
+<div class=sidebar-toggle>
+<div class=sidebar-toggle-line-wrap>
+<span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+<span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+<span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+</div>
+</div>
+<aside id=sidebar class=sidebar>
+<div class=sidebar-inner>
+<section class="site-overview sidebar-panel sidebar-panel-active">
+<div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person>
+<img class=site-author-image itemprop=image src=/blog.github.io/img/avatar.png alt=Schrodinger>
+<p class=site-author-name itemprop=name>Schrodinger</p>
+<p class="site-description motion-element" itemprop=description>
+绿螘新醅酒，红泥小火炉
+</p>
+</div>
+<nav class="site-state motion-element">
+<div class="site-state-item site-state-posts">
+<a href=/post/>
+<span class=site-state-item-count>3</span>
+<span class=site-state-item-name>日志</span>
+</a>
+</div>
+<div class="site-state-item site-state-categories">
+<a href=/categories/>
+<span class=site-state-item-count>2</span>
+<span class=site-state-item-name>分类</span>
+</a>
+</div>
+<div class="site-state-item site-state-tags">
+<a href=/tags/>
+<span class=site-state-item-count>2</span>
+<span class=site-state-item-name>标签</span>
+</a>
+</div>
+</nav>
+<div class="links-of-author motion-element">
+<span class=links-of-author-item>
+<a href=https://github.com/yumc1991 target=_blank title=GitHub>
+<i class="fa fa-fw fa-github"></i>
+GitHub
+</a>
+</span>
+<span class=links-of-author-item>
+<a href="https://blog.csdn.net/fIsh1220Fish?spm=1000.2115.3001.5343" target=_blank title=CSDN>
+<i class="fa fa-fw fa-globe"></i>
+CSDN
+</a>
+</span>
+</div>
+<div class="links-of-blogroll motion-element links-of-blogroll-inline">
+<div class=links-of-blogroll-title>
+<i class="fa fa-fw fa-globe"></i>
+友情链接
+</div>
+<ul class=links-of-blogroll-list>
+<li class=links-of-blogroll-item>
+<a href=http://cn.linux.vbird.org/ title=鸟哥的Linux target=_blank>鸟哥的Linux</a>
+</li>
+<li class=links-of-blogroll-item>
+<a href=http://highscalability.com/ title=系统设计 target=_blank>系统设计</a>
+</li>
+<li class=links-of-blogroll-item>
+<a href=https://www.cncf.io/ title=云原生 target=_blank>云原生</a>
+</li>
+<li class=links-of-blogroll-item>
+<a href=https://www.liaoxuefeng.com/ title=廖雪峰 target=_blank>廖雪峰</a>
+</li>
+</ul>
+</div>
+<div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline">
+<div class=tagcloud-of-blogroll-title>
+<i class="fa fa-fw fa-tags"></i>
+标签云
+</div>
+<ul class=tagcloud-of-blogroll-list>
+<li class=tagcloud-of-blogroll-item>
+<a href=/tags/%E7%BB%8F%E6%B5%8E%E5%AD%A6>经济学
+<sup>2</sup>
+</a>
+</li>
+<li class=tagcloud-of-blogroll-item>
+<a href=/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98>性能调优
+<sup>1</sup>
+</a>
+</li>
+</ul>
+</div>
+</section>
+</div>
+</aside>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=footer-inner>
+<div class=copyright>
+<span class=copyright-year>
+&copy; 2010 - 2022
+</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=copyright-author>Schrodinger的博客</span>
+</div>
+<div class=powered-info>
+<span class=powered-by>
+Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.86.1</a>
+</span>
+<span class=separator-line>/</span>
+<span class=theme-info>
+Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank> NexT
+</a>
+</span>
+</div>
+<div class=vistor-info>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<span class=site-uv>
+<i class="fa fa-user"></i>
+<span class=busuanzi-value id=busuanzi_value_site_uv></span>
+</span>
+<span class=separator-line>/</span>
+<span class=site-pv>
+<i class="fa fa-eye"></i>
+<span class=busuanzi-value id=busuanzi_value_site_pv></span>
+</span>
+</div>
+<div class=license-info>
+<span class=storage-info>
+Storage by
+<a href=https://github.com/ style=font-weight:700 target=_blank>Github 仓库</a>
+</span>
+<span class=separator-line>/</span>
+<span class=license-num>
+<a href=http://beian.miit.gov.cn target=_blank>粤 ICP 备 18047355 号</a>
+</span>
+</div>
+</div>
+</footer>
+<div class=back-to-top>
+<i class="fa fa-arrow-up"></i>
+<span id=scrollpercent><span>0</span>%</span>
+</div>
+</div>
+<script type=text/javascript src=//unpkg.com/jquery@2.1.4/dist/jquery.min.js></script>
+<script type=text/javascript src=https://yumc1991.github.io/js/search.js></script>
+<script type=text/javascript src=https://yumc1991.github.io/js/affix.js></script>
+<script type=text/javascript>function detectIE(){var a=window.navigator.userAgent,b=a.indexOf('MSIE '),c=a.indexOf('Trident/'),d=a.indexOf('Edge/');return b>0||c>0||d>0?-1:1}function getCntViewHeight(){var b=$('#content').height(),a=$(window).height(),c=b>a?b-a:$(document).height()-a;return c}function getScrollbarWidth(){var a=$('<div />').addClass('scrollbar-measure').prependTo('body'),b=a[0],c=b.offsetWidth-b.clientWidth;return a.remove(),c}function registerBackTop(){var b=50,a=$('.back-to-top');$(window).on('scroll',function(){var d,e,f,c,g;a.toggleClass('back-to-top-on',window.pageYOffset>b),d=$(window).scrollTop(),e=getCntViewHeight(),f=d/e,c=Math.round(f*100),g=c>100?100:c,$('#scrollpercent>span').html(g)}),a.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0},800)})}function initScrollSpy(){var a='.post-toc',d=$(a),b='.active-current';d.on('activate.bs.scrollspy',function(){var b=$(a+' .active').last();c(),b.addClass('active-current')}).on('clear.bs.scrollspy',c),$('body').scrollspy({target:a});function c(){$(a+' '+b).removeClass(b.substring(1))}}function initAffix(){var a=$('.header-inner').height(),b=parseInt($('.footer').outerHeight(!0),10),c=a+10;$('.sidebar-inner').affix({offset:{top:c,bottom:b}})}function initTOCDimension(){var a,b;$(window).on('resize',function(){a&&clearTimeout(a),a=setTimeout(function(){var a=document.body.clientHeight-100;updateTOCHeight(a)},0)}),updateTOCHeight(document.body.clientHeight-100),b=getScrollbarWidth(),$('.post-toc').css('width','calc(100% + '+b+'px)')}function updateTOCHeight(a){a=a||'auto',$('.post-toc').css('max-height',a)}$(function(){var b=$('.header-inner').height()+10,c,d,a,e;$('#sidebar').css({'margin-top':b}).show(),c=parseInt($('#sidebar').css('margin-top')),d=parseInt($('.sidebar-inner').css('height')),a=c+d,e=$('.content-wrap').height(),e<a&&$('.content-wrap').css('min-height',a),$('.site-nav-toggle').on('click',function(){var a=$('.site-nav'),e=$('.toggle'),b='site-nav-on',f='toggle-close',c=a.hasClass(b),g=c?'slideUp':'slideDown',d=c?'removeClass':'addClass';a.stop()[g]('normal',function(){a[d](b),e[d](f)})}),registerBackTop(),initAffix(),initTOCDimension(),$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active'),$(this).next().removeClass('sidebar-nav-active'),$('.'+$(this).next().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)}),$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active'),$(this).prev().removeClass('sidebar-nav-active'),$('.'+$(this).prev().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)})})</script>
+<script src=//unpkg.com/imageviewer@1.1.0/dist/viewer.min.js></script>
+<script type=text/javascript>$(function(){$('.post-body').viewer()})</script>
+<script type=text/javascript>const locale={placeholder:'欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^'};$(function(){detectIE()>0?$.getScript(document.location.protocol+'//unpkg.com/@waline/client@1.6.0/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:!0,emoji:[],wordLimit:'200',uploadImage:!1,locale,requiredMeta:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"})}):$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。')})</script>
+<script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script>
+<script>(function(){var a=document.createElement('script'),c=window.location.protocol.split(':')[0],b;c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script>
+</body>
+</html>

@@ -4,23 +4,24 @@
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta http-equiv=content-security-policy content="upgrade-insecure-requests">
-<title> 读书笔记 - Schrodinger的博客 </title>
+<title> Agent+ddd实战 - Schrodinger的博客 </title>
 <meta name=keywords content="博客,程序员,架构师,思考,读书,笔记,技术,分享,JAVA,Golang">
 <meta name=author content="Schrodinger">
-<meta property="og:title" content="读书笔记">
+<meta property="og:title" content="Agent+ddd实战">
 <meta property="og:site_name" content="Schrodinger的博客">
 <meta property="og:image" content="https://yumc1991.github.io/blog.github.io/img/author.jpg">
-<meta name=title content="读书笔记 - Schrodinger的博客">
-<meta name=description content="欢迎来到Schrodinger的博客，个人主要专注于软件开发，读书笔记，解决方案。">
+<meta name=title content="Agent+ddd实战 - Schrodinger的博客">
+<meta name=description content="使用agent+ddd实现一些有趣的功能">
 <link rel="shortcut icon" href=https://yumc1991.github.io/blog.github.io/img/favicon.ico>
 <link rel=apple-touch-icon href=https://yumc1991.github.io/blog.github.io/img/apple-touch-icon.png>
 <link rel=apple-touch-icon-precomposed href=https://yumc1991.github.io/blog.github.io/img/apple-touch-icon.png>
 <link href=//unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css rel=stylesheet type=text/css>
+<link href=//unpkg.com/imageviewer@1.1.0/dist/viewer.min.css rel=stylesheet>
 <link href=https://yumc1991.github.io/blog.github.io/css/main.css rel=stylesheet type=text/css>
 <link href=https://yumc1991.github.io/blog.github.io/css/syntax.css rel=stylesheet type=text/css>
 </head>
 <body itemscope itemtype=http://schema.org/WebPage lang=zh-hans>
-<div class="container one-collumn sidebar-position-left">
+<div class="container one-collumn sidebar-position-left page-home">
 <div class=headband></div>
 <header id=header class=header itemscope itemtype=http://schema.org/WPHeader>
 <div class=header-inner> <div class=site-brand-container>
@@ -54,7 +55,7 @@
 <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页
 </a>
 </li>
-<li class=menu-item>
+<li class="menu-item menu-item-active">
 <a href=/blog.github.io/post rel=section>
 <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档
 </a>
@@ -91,47 +92,89 @@
 <div class=main-inner>
 <div class=content-wrap>
 <div id=content class=content>
-<section id=posts class=posts-collapse>
-<div class=collection-title>
-<h2>读书笔记
-<small>分类</small>
-</h2>
-</div>
-<div class=collection-title>
-<h2 class="archive-year motion-element" id=archive-year-2022>2022</h2>
-</div>
+<section id=posts class=posts-expand>
 <article class="post post-type-normal" itemscope itemtype=http://schema.org/Article>
 <header class=post-header>
-<h1 class=post-title>
-<a class=post-title-link href=https://yumc1991.github.io/blog.github.io/post/%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0-%e5%8d%8a%e5%b0%8f%e6%97%b6%e6%bc%ab%e7%94%bb%e7%bb%8f%e6%b5%8e%e5%ad%a6/ itemprop=url>
-<span itemprop=name>读书笔记-半小时漫画经济学</span>
+<h1 class=post-title itemprop="name headline">
+<a class=post-title-link href=https://yumc1991.github.io/blog.github.io/post/agent+ddd%E5%AE%9E%E6%88%98/ itemprop=url>
+Agent+ddd实战
 </a>
 </h1>
 <div class=post-meta>
-<time class=post-time itemprop=dateCreated datetime=2022-06-12 content="06-12">
-06-12
+<span class=post-pushdate>
+<i class="fa fa-calendar-o fa-fw"></i>
+<span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2022-10-30">
+2022-10-30
 </time>
-</div>
-</header>
-</article>
-<article class="post post-type-normal" itemscope itemtype=http://schema.org/Article>
-<header class=post-header>
-<h1 class=post-title>
-<a class=post-title-link href=https://yumc1991.github.io/blog.github.io/post/%e8%af%bb%e4%b9%a6%e7%ac%94%e8%ae%b0-%e5%8d%8a%e5%b0%8f%e6%97%b6%e6%bc%ab%e7%94%bb%e7%bb%8f%e6%b5%8e%e5%ad%a62/ itemprop=url>
-<span itemprop=name>读书笔记 半小时漫画经济学2</span>
+</span>
+<span class=post-category>
+<i class="fa fa-folder-o fa-fw"></i>
+<span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing>
+<a class=post-category-a href=/blog.github.io/categories/java itemprop=url rel=index>
+<span itemprop=name>JAVA</span>
 </a>
-</h1>
-<div class=post-meta>
-<time class=post-time itemprop=dateCreated datetime=2022-06-12 content="06-12">
-06-12
-</time>
+&nbsp;
+</span>
+</span>
+<span class=post-wordcount>
+<i class="fa fa-file-word-o fa-fw"></i>
+<span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>0 字</span>
+</span>
+<span class=post-readtime>
+<i class="fa fa-eye fa-fw"></i>
+<span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>0分钟</span>
+</span>
+<span id=/blog.github.io/post/agent+ddd%E5%AE%9E%E6%88%98/ class="leancloud_visitors post-visitor" data-flag-title=Agent+ddd实战>
+<i class="fa fa-binoculars fa-fw"></i>
+<span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span>
+</span>
 </div>
 </header>
+<div class=post-body itemprop=articleBody>
+</div>
+<footer class=post-footer>
+<div class=post-tags>
+<a href=/blog.github.io/tags/%e5%8a%9f%e8%83%bd%e5%ae%9e%e6%88%98 rel=tag title=功能实战>#功能实战#</a>
+</div>
+<div class=addthis_inline_share_toolbox></div>
+<div class=post-nav>
+<div class=article-copyright>
+<div class=article-copyright-info>
+<p>
+<span>标题：</span>Agent+ddd实战
+</p>
+<p>
+<span>链接：</span>https://yumc1991.github.io/blog.github.io/post/agent+ddd%E5%AE%9E%E6%88%98/
+</p>
+<p>
+<span>作者：</span>Schrodinger
+</p>
+<p>
+<span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/3.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！
+</p>
+</div>
+</div>
+<div class=clear></div>
+</div>
+<div class=post-nav>
+<div class="post-nav-next post-nav-item">
+</div>
+<div class="post-nav-prev post-nav-item">
+<a href=https://yumc1991.github.io/blog.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/ rel=prev title=性能调优>
+性能调优
+<i class="fa fa-chevron-right"></i>
+</a>
+</div>
+</div>
+<div id=wcomments></div>
+</footer>
 </article>
 </section>
-<nav class=pagination>
-<span class="page-number current">1</span>
-</nav>
 </div>
 </div>
 <div class=sidebar-toggle>
@@ -171,12 +214,6 @@
 </a>
 </div>
 </nav>
-<div class="feed-link motion-element">
-<a href=/blog.github.io/blog.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml rel=alternate type=application/rss+xml target=_blank>
-<i class="fa fa-rss"></i>
-RSS 订阅
-</a>
-</div>
 <div class="links-of-author motion-element">
 <span class=links-of-author-item>
 <a href=https://github.com/yumc1991 target=_blank title=GitHub>
@@ -291,6 +328,10 @@ Storage by
 <script type=text/javascript src=https://yumc1991.github.io/blog.github.io/js/search.js></script>
 <script type=text/javascript src=https://yumc1991.github.io/blog.github.io/js/affix.js></script>
 <script type=text/javascript>function detectIE(){var a=window.navigator.userAgent,b=a.indexOf('MSIE '),c=a.indexOf('Trident/'),d=a.indexOf('Edge/');return b>0||c>0||d>0?-1:1}function getCntViewHeight(){var b=$('#content').height(),a=$(window).height(),c=b>a?b-a:$(document).height()-a;return c}function getScrollbarWidth(){var a=$('<div />').addClass('scrollbar-measure').prependTo('body'),b=a[0],c=b.offsetWidth-b.clientWidth;return a.remove(),c}function registerBackTop(){var b=50,a=$('.back-to-top');$(window).on('scroll',function(){var d,e,f,c,g;a.toggleClass('back-to-top-on',window.pageYOffset>b),d=$(window).scrollTop(),e=getCntViewHeight(),f=d/e,c=Math.round(f*100),g=c>100?100:c,$('#scrollpercent>span').html(g)}),a.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0},800)})}function initScrollSpy(){var a='.post-toc',d=$(a),b='.active-current';d.on('activate.bs.scrollspy',function(){var b=$(a+' .active').last();c(),b.addClass('active-current')}).on('clear.bs.scrollspy',c),$('body').scrollspy({target:a});function c(){$(a+' '+b).removeClass(b.substring(1))}}function initAffix(){var a=$('.header-inner').height(),b=parseInt($('.footer').outerHeight(!0),10),c=a+10;$('.sidebar-inner').affix({offset:{top:c,bottom:b}})}function initTOCDimension(){var a,b;$(window).on('resize',function(){a&&clearTimeout(a),a=setTimeout(function(){var a=document.body.clientHeight-100;updateTOCHeight(a)},0)}),updateTOCHeight(document.body.clientHeight-100),b=getScrollbarWidth(),$('.post-toc').css('width','calc(100% + '+b+'px)')}function updateTOCHeight(a){a=a||'auto',$('.post-toc').css('max-height',a)}$(function(){var b=$('.header-inner').height()+10,c,d,a,e;$('#sidebar').css({'margin-top':b}).show(),c=parseInt($('#sidebar').css('margin-top')),d=parseInt($('.sidebar-inner').css('height')),a=c+d,e=$('.content-wrap').height(),e<a&&$('.content-wrap').css('min-height',a),$('.site-nav-toggle').on('click',function(){var a=$('.site-nav'),e=$('.toggle'),b='site-nav-on',f='toggle-close',c=a.hasClass(b),g=c?'slideUp':'slideDown',d=c?'removeClass':'addClass';a.stop()[g]('normal',function(){a[d](b),e[d](f)})}),registerBackTop(),initAffix(),initTOCDimension(),$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active'),$(this).next().removeClass('sidebar-nav-active'),$('.'+$(this).next().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)}),$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active'),$(this).prev().removeClass('sidebar-nav-active'),$('.'+$(this).prev().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)})})</script>
+<script src=//unpkg.com/imageviewer@1.1.0/dist/viewer.min.js></script>
+<script type=text/javascript>$(function(){$('.post-body').viewer()})</script>
+<script type=text/javascript>const locale={placeholder:'欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^'};$(function(){detectIE()>0?$.getScript(document.location.protocol+'//unpkg.com/@waline/client@1.6.0/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:!0,emoji:[],wordLimit:'200',uploadImage:!1,locale,requiredMeta:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"})}):$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。')})</script>
+<script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script>
 <script>(function(){var a=document.createElement('script'),c=window.location.protocol.split(':')[0],b;c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script>
 </body>
 </html>

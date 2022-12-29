@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>Agent+ddd实战</title><url>https://yumc1991.github.io/blog.github.io/post/agent+ddd%E5%AE%9E%E6%88%98/</url><categories><category>JAVA</category></categories><tags><tag>功能实战</tag></tags><content type="html"/></entry><entry><title>性能调优</title><url>https://yumc1991.github.io/blog.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</url><categories><category>JAVA</category></categories><tags><tag>性能调优</tag></tags><content type="html"> 背景 最近的工作中接触到了大量性能调优方面的事务，这些都是之前工作中从未接触过的，这里简单总结一下。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>学习算法有什么用</title><url>https://yumc1991.github.io/blog.github.io/post/%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/</url><categories><category>JAVA</category></categories><tags><tag>算法</tag></tags><content type="html"> 背景 最近接了个小任务，需要做一个SQL解析工具，该SQL解析工具用于解决在版本迭代过程中，不同版本实体类之间字段变更后的SQL生成问题。
+在实现的过程中，遇到了这样一个问题：比较2个json中的各个字段及其value是否相同，并且输出不同的key、value。
+思路 遇事不决，先问百度/谷歌。
+由于项目中采用的是阿里的fastjson，因此就去看了看有没有现成的api可以完成这个任务。答案是，没有。
+接下来，看看有没有造好的轮子可以用，找了找之后，就发现这篇里提到的有可取之处：https://www.jianshu.com/p/abd00a69f081
+但是仔细看了之后又发现，和我们的需求并不相符。不过思路就此清晰了起来，简单来说就是：递归+回溯。
+通过递归+回溯拿到源json和目的json的全部字段，分别存入2个Map中。其中，Map的key是json中某个key的全路径 遍历目的Map，判断其中的各个key在源Map是否存在，若存在，则比较value，若不存在则为新增。 详细 这里首先解释一下为什么要用【递归+回溯】这种解法：
+需要解析出大json中最底层的k:v，因此需要像剥洋葱一样把外层的皮一层一层剥开 又由于需要在拿到一个k:v后再去拿同级或上一级的k:v，因此还需要回溯 这里呢，就看出平时做算法题的好处了（虽然已经很久没做了~），leetcode上《剑指 Offer II 084. 含有重复元素集合的全排列》里就非常适配当前场景，同时题解里还非常贴心的给出了模板。接下来要做的，就是将模板套入到我们的场景中解决问题。
+解答 核心代码包括dfsPath和backTrace两部分，其中dfsPath是用于对路径进行深度递归的，isEndPoint方法用来判断obj是否为基础数据类型，如果是则结束此分支递归。backTrace是回退路径。
+由于json中可能包含基础数据类型、JSONObject类型和JSONArray类型，因此要区别对待。</content></entry><entry><title>Agent+ddd实战</title><url>https://yumc1991.github.io/blog.github.io/post/agent+ddd%E5%AE%9E%E6%88%98/</url><categories><category>JAVA</category></categories><tags><tag>功能实战</tag></tags><content type="html"/></entry><entry><title>性能调优</title><url>https://yumc1991.github.io/blog.github.io/post/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</url><categories><category>JAVA</category></categories><tags><tag>性能调优</tag></tags><content type="html"> 背景 最近的工作中接触到了大量性能调优方面的事务，这些都是之前工作中从未接触过的，这里简单总结一下。
 方法论 总体而言，性能调优分为两部分，分别是客户端性能调优和服务端性能调优（针对CS架构），如果是管理平台等BS架构类型的系统，客户端就是浏览器，就是前端调优，而后端可以做的事情相当的少，就是服务端的调优。
 调优手段 就目前的知识储备而言，我所了解的调优基本上如同程咬金的3板斧一般。
 劈脑袋之控制流量 鬼剔牙之线程池与连接池适配 掏耳朵之指标观测与参数调优 ok，下面分别针对上述3种方法进行详述。 控制流量 当我们驾驶汽车行驶在马路上时，经常会遇到红绿灯。除了规范交通，红绿灯更为主要的作用是进行限流，控制路上行驶的车流量，避免拥塞。在计算机的世界里，也是处处存在着拥塞控制，最经典的当属TCP里的滑动窗口设计。
